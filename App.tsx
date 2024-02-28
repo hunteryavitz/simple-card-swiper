@@ -3,7 +3,6 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import Deck from "./src/Deck";
 import {Icon, Button} from "@rneui/base";
 import {Card} from '@rneui/themed';
-import * as url from "url";
 
 const DATA = [
   { id: 1, text: 'Card #1', uri: 'C:\\Users\\hyavi\\IdeaProjects\\simple-card-swiper\\assets\\splash.png' },
@@ -40,7 +39,15 @@ export default function App() {
 
   const renderNoMoreCards = () => {
     return (
-        <Text>No more cards</Text>
+        <Card>
+            <Text style={{ margin: 10 }}>
+                No more cards here man
+            </Text>
+            <Button
+                title="Get more"
+                type="outline"
+            />
+        </Card>
     );
   }
 

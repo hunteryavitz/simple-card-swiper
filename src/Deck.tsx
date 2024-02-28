@@ -7,6 +7,11 @@ const SWIPE_OUT_DURATION = 250
 
 class Deck extends Component {
 
+    static defaultProps = {
+        onSwipeRight: () => {},
+        onSwipeLeft: () => {}
+    }
+
     constructor(props: any) {
         // @ts-ignore
         super();
@@ -29,7 +34,7 @@ class Deck extends Component {
             }
 
         })
-        this.state = { panResponder, position };
+        this.state = { panResponder, position, index: 0};
     }
 
     forceSwipe(direction: number) {
@@ -43,7 +48,9 @@ class Deck extends Component {
     }
 
     onSwipeComplete(direction: number) {
+        // @ts-ignore
         const { onSwipeLeft, onSwipeRight, data } = this.props
+        // @ts-ignore
         const item = data[this.state.index]
         direction === 0 ? onSwipeLeft(item) : onSwipeRight(item)
         // @ts-ignore
@@ -78,15 +85,29 @@ class Deck extends Component {
 
     renderCards() {
         // @ts-ignore
-        return this.props.data.map((item: any, index: number) => {
-            if (index === 0) {
+        if (this.state.index >= this.props.data.length) {
+            // @ts-ignore
+            return this.props.renderNoMoreCards()
+        }
+
+        // @ts-ignore
+        return this.props.data.map((item: any, i: number) => {
+            // @ts-ignore
+            if (i < this.state.index) { return null }
+
+            // @ts-ignore
+            if (i === this.state.index) {
                 return (
                     // @ts-ignore
-                    <Animated.View key={item.id} style={this.getCardStyle()} {...this.state.panResponder.panHandlers}>
+                    <Animated.View
+                        key={item.id}
+                        style={this.getCardStyle()}
+                        {...this.state.panResponder.panHandlers}>
                         {this.props.renderCard(item)}
                     </Animated.View>
                 )
             }
+
 
             // @ts-ignore
             return this.props.renderCard(item);

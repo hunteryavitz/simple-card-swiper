@@ -1,20 +1,21 @@
-import {StyleSheet, View, Text, ScrollView} from 'react-native';
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import Deck from "./src/Deck";
-import {Icon, Button} from "@rneui/base";
-import {Card} from '@rneui/themed';
+import { StyleSheet, View, Text, ScrollView } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import Deck from './src/Deck'
+import { Icon, Button } from '@rneui/base'
+import { Card } from '@rneui/themed'
 
+// TODO: Using `item.uri` in `CardImage` doesn't render the image
 const DATA = [
-  { id: 1, text: 'Card #1', uri: 'C:\\Users\\hyavi\\IdeaProjects\\simple-card-swiper\\assets\\splash.png' },
-  { id: 2, text: 'Card #2', uri: 'C:\\Users\\hyavi\\IdeaProjects\\simple-card-swiper\\assets\\splash.png' },
-  { id: 3, text: 'Card #3', uri: 'C:\\Users\\hyavi\\IdeaProjects\\simple-card-swiper\\assets\\splash.png' },
-  { id: 4, text: 'Card #4', uri: 'C:\\Users\\hyavi\\IdeaProjects\\simple-card-swiper\\assets\\splash.png' },
-  { id: 5, text: 'Card #5', uri: 'C:\\Users\\hyavi\\IdeaProjects\\simple-card-swiper\\assets\\splash.png' },
-  { id: 6, text: 'Card #6', uri: 'C:\\Users\\hyavi\\IdeaProjects\\simple-card-swiper\\assets\\splash.png' },
-  { id: 7, text: 'Card #7', uri: 'C:\\Users\\hyavi\\IdeaProjects\\simple-card-swiper\\assets\\splash.png' },
-  { id: 8, text: 'Card #8', uri: 'C:\\Users\\hyavi\\IdeaProjects\\simple-card-swiper\\assets\\splash.png' },
-  { id: 9, text: 'Card #9', uri: 'C:\\Users\\hyavi\\IdeaProjects\\simple-card-swiper\\assets\\splash.png' },
-];
+  { id: 1, text: 'Card #1', uri: './assets/image-01.jpg' },
+  { id: 2, text: 'Card #2', uri: './assets/image-01.jpg' },
+  { id: 3, text: 'Card #3', uri: './assets/image-01.jpg' },
+  { id: 4, text: 'Card #4', uri: './assets/image-01.jpg' },
+  { id: 5, text: 'Card #5', uri: './assets/image-01.jpg' },
+  { id: 6, text: 'Card #6', uri: './assets/image-01.jpg' },
+  { id: 7, text: 'Card #7', uri: './assets/image-01.jpg' },
+  { id: 8, text: 'Card #8', uri: './assets/image-01.jpg' },
+  { id: 9, text: 'Card #9', uri: './assets/image-01.jpg' },
+]
 
 export default function App() {
 
@@ -26,29 +27,30 @@ export default function App() {
             <Card.Image
                 source={require('./assets/image-01.jpg')}
                 />
-
             <Text style={{ marginBottom: 10 }}>
                 I can customize the card further.
             </Text>
             <Button title={'fav'}>
+                // TODO: This button doesn't do anything yet
                 <Icon name={'code'} />
             </Button>
         </Card>
-    );
+    )
   }
 
   const renderNoMoreCards = () => {
     return (
         <Card>
             <Text style={{ margin: 10 }}>
-                No more cards here man
+                No more cards
             </Text>
+            // TODO: This button doesn't do anything yet
             <Button
-                title="Get more"
+                title="GET MORE CARDS"
                 type="outline"
             />
         </Card>
-    );
+    )
   }
 
   return (
@@ -56,7 +58,6 @@ export default function App() {
           <ScrollView>
               <View style={styles.container}>
                   <Deck
-                      // @ts-ignore
                       data={DATA}
                       renderCard={renderCard}
                       renderNoMoreCards={renderNoMoreCards}
@@ -64,7 +65,7 @@ export default function App() {
               </View>
           </ScrollView>
       </SafeAreaProvider>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -72,4 +73,4 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-});
+})
